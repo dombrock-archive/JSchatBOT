@@ -16,7 +16,7 @@ A flag that indicates if the bot is listening to user input with the purpose of 
 
 Basically a wrapper for our REGEX. Takes two arguments, 'input' & 'src' and decides if 'input' contains the string 'src'. The value for 'input' can be any number of words that is more than zero. You can string words together like this:
 
-````
+````Javascript
 BOT.hear(input,'is the time')
 ````
 
@@ -28,13 +28,13 @@ This method will return true if there is a match found and false if there is not
 
 So for example executing the code below will return true:
 
-````
+````Javascript
 BOT.hear('Hello World!','hello')
 ````
 
 But
 
-````
+````Javascript
 BOT.hear('Greetings','Greetings!')
 ````
  
@@ -60,7 +60,7 @@ In order to add new functionality to this bot you will most likely have to add n
  
 If you are content with working with the current TAGS then all you need to do in order accept new kinds of user input is add a new code block like the one below:
 
-````
+````Javascript
   if(BOT.hear(input,'hello')===true){
     console.log("heard 'hello' as greeting");
     TAG["greetings"] = true;
@@ -69,7 +69,7 @@ If you are content with working with the current TAGS then all you need to do in
 
 Simply replace any instance of the string ````'hello'```` with your new string that you want to search for. For instance you could change this code to accept the user saying "Good day sir" as a "greeting" by changing the code like this and adding it to this method:
 
-````
+````Javascript
   if(BOT.hear(input,'good day sir')===true){
     console.log("heard 'good day sir' as greeting");
     TAG["greetings"] = true;
@@ -98,7 +98,7 @@ Due to this, it is very important to ensure that the blocks of code that are in 
 
 Not only does this bot generate a valid response to "speak" back to the user based on the users input but it also contains a function for semi-randomly selecting what that response should sound like using the ````getRes()```` function. Each block of code in this method (````BOT.think()````) that is used for deciding a response based on a tag will look something like this:
 
-````
+````Javascript
   if(TAG["greetings"]===true){
     console.log("Thinking about greetings");
     option_list = [
@@ -113,7 +113,7 @@ Not only does this bot generate a valid response to "speak" back to the user bas
 
 By editing the array 'option_list' you can add new responses to the list of possible responses that the bot can use for each tag. For instance you could add a new the "greetings" TAG like this:
 
-````
+````Javascript
   if(TAG["greetings"]===true){
     console.log("Thinking about greetings");
     option_list = [
@@ -127,7 +127,8 @@ By editing the array 'option_list' you can add new responses to the list of poss
   }
 ````
 Sure, that might have been better suited for the "greetings_slang" TAG but I'm not here to argue semantics. To add a new TAG to this method you will simple create a new code block similar to the ones above. For example you could add a new TAG to this method like this:
-````
+
+````Javascript
   if(TAG["newTag"]===true){
     console.log("Thinking about new tags");
     option_list = [
@@ -150,7 +151,7 @@ In order to implement a new feature you will have to follow a few steps and inse
 
 You will start by modifying the variable ````TAG```` found in the top of the ````BOT.tag()```` method. This is a JSON object and you can add a new TAG to it like this:
 
-````
+````Javascript
   var TAG = {
     "greetings":false,
     "greetings_slang":false,
@@ -166,7 +167,7 @@ You will probably want to set your new TAG to ````false```` by default. If you a
 
 Next, you will want to add some logic into the ````BOT.tag()```` method that will sort some words or phrases into the tag using ````BOT.hear()````. For example you can see the logic for the greeting tag here:
 
-````
+````Javascript
   //##TAG LOGIC##
   //greetings
   if(BOT.hear(input,'hello')===true){
@@ -185,7 +186,7 @@ You will also need to add some new logic into the ````BOT.think()```` method in 
 
 The first piece of logic that you will need to add is the logic for deciding what kind of responses this TAG can generate. An example of this type of logic is below:
 
-````
+````Javascript
   if(TAG["newTAG"]===true){
     console.log("Thinking about my new TAG");
     option_list = [
@@ -198,7 +199,7 @@ The first piece of logic that you will need to add is the logic for deciding wha
 
 The last but most important step is to add your new TAG to the very ugly "unknown checking" if statement at the bottom of ````BOT.think()```` method. At the time of writing it looks like this:
 
-````
+````Javascript
 //unknown (gross function that must include everything)
 if(TAG["greetings"]===false&&TAG["greetings_slang"]===false&&TAG["time"]===false&&TAG["date"]===false&&TAG["about_me"]===false){
   ...
@@ -207,7 +208,7 @@ if(TAG["greetings"]===false&&TAG["greetings_slang"]===false&&TAG["time"]===false
 
 To add your tag to this condition you just need to put it in like the others by adding an ````&&```` operator to the end. You could add a new tag like this:
 
-````
+````Javascript
 //unknown (gross function that must include everything)
 if(TAG["greetings"]===false&&TAG["greetings_slang"]===false&&TAG["time"]===false&&TAG["date"]===false&&TAG["about_me"]===false&&TAG["newTAG"]===false){
   ...
