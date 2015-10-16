@@ -1,6 +1,10 @@
 # JSchatBOT
 A semi-simple JS chat bot example with working TTS
 
+example here:
+
+http://mzero.space/hosted/JSchatBOT/
+
 This software contains some unfinished objects intentionally, to allow for quick extension in the future.
 
 ### THE LOGIC FLOW
