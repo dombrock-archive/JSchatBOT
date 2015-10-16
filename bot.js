@@ -186,8 +186,12 @@ BOT.listen = function(input){
 
 BOT.speak = function(res,q){
   if(!q){
-    var msg = new SpeechSynthesisUtterance(res);
-    window.speechSynthesis.speak(msg);
+    if (window.SpeechSynthesisUtterance === undefined) {
+      console.log("NO TTS SUPPORT IN THIS BROSWER");
+    } else {
+        var msg = new SpeechSynthesisUtterance(res);
+        window.speechSynthesis.speak(msg);
+    }
   }
   console.log("Said: "+res);
 	$("#result").html(res);
