@@ -164,7 +164,7 @@ This is where we take the "tag" var and decide what to do with it
     ];
     res += getRes(option_list);
   }
-  //unkown (gross function that must include everything)
+  //unknown (gross function that must include everything)
   if(TAG["greetings"]===false&&TAG["greetings_slang"]===false&&TAG["time"]===false&&TAG["date"]===false&&TAG["about_me"]===false){
     res = "I dont know what '"+input+"' means! Maybe I can learn from you. what would you say to this?";
     BOT.learning = true;
